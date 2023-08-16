@@ -35,7 +35,7 @@ FDF is compatible with:
 3. Run MiniShell with a map from **test_maps**:
 
    ```
-   ./minishell test_maps/_[map-name.fdf]_</i>
+   ./minishell test_maps/[map-name.fdf]
    ```
 
 ## Controls
