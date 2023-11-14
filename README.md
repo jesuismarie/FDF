@@ -19,7 +19,34 @@ FDF is compatible with:
 - **Movement**: Navigate around the 3D space.
 - Color gradient based on altitude.
 
-## How to Use
+## How to Use on Linux
+
+### Prerequisites
+
+1. Before running FDF on Linux, ensure that you have the necessary dependencies installed. You may need to install the following packages:
+   ```bash
+   sudo apt-get update -y
+   sudo apt-get install build-essential -y
+   sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev -y
+   ```
+2. Clone the repository:
+
+   ```
+   git clone https://github.com/jesuismarie/FdF.git
+   ```
+3. Compile the program:
+
+   ```
+   make
+   ```
+
+4. Run MiniShell with a map from **test_maps**:
+
+   ```
+   ./minishell test_maps/[map-name.fdf]
+   ```
+
+## How to Use in MacOs
 
 1. Clone the repository:
 
