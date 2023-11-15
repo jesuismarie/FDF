@@ -43,7 +43,7 @@ FDF is compatible with:
 4. Run MiniShell with a map from **test_maps**:
 
    ```
-   ./minishell test_maps/[map-name.fdf]
+   ./fdf test_maps/[map-name.fdf]
    ```
 
 ## How to Use in MacOs
@@ -62,7 +62,7 @@ FDF is compatible with:
 3. Run MiniShell with a map from **test_maps**:
 
    ```
-   ./minishell test_maps/[map-name.fdf]
+   ./fdf test_maps/[map-name.fdf]
    ```
 
 ## Controls
