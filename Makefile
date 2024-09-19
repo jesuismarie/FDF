@@ -13,7 +13,7 @@ HEADER = ./includes/fdf.h
 
 MINILIBX = minilibx_macos
 
-FMS = -framework OpenGL -framework AppKit
+FMS = -framework OpenGL -framework AppKit -L $(MINILIBX) -lmlx
 
 ifeq ($(shell uname -s), Linux)
 	MINILIBX = minilibx-linux
