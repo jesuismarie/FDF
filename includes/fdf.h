@@ -13,8 +13,8 @@
 #ifndef FDF_H
 # define FDF_H
 
-# define WIN_X 1500
-# define WIN_Y 800
+# define WIN_X 1600
+# define WIN_Y 1000
 
 # ifdef __linux__
 #  define ESC 65307
