@@ -43,7 +43,7 @@ FDF is compatible with:
    ```
 4. Run FDF with a map from **test_maps**:
    ```bash
-   ./fdf test_maps/[map-name.fdf]
+   ./fdf maps/[map-name.fdf]
    ```
 
 ---
@@ -60,7 +60,7 @@ FDF is compatible with:
    ```
 3. Run FDF with a map from **test_maps**:
    ```bash
-   ./fdf test_maps/[map-name.fdf]
+   ./fdf maps/[map-name.fdf]
    ```
 
 ---
@@ -74,3 +74,8 @@ FDF is compatible with:
 - **P**: Horizontal view.
 - **A/D**: Rotate the map.
 - **W/S**: Z-axis translation.
+
+---
+
+### Demonstration of Controls
+![Demonstration of Controls](pictures/controls.gif)
