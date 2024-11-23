@@ -19,9 +19,9 @@ FDF is compatible with:
 - **Movement**: Navigate through the 3D space.
 - **Color Gradient**: Altitude-based color representation.
 
-![Rendered Map](pictures/t1.jpg)
+<img src="pictures/t1.jpg" alt="Rendered Map" style="width:100%;">
 
-![Rendered Map](pictures/whole_world.jpg)
+<img src="pictures/whole_world.jpg" alt="Rendered Map" style="width:100%;">
 
 ## How to Use on Linux
 
@@ -78,4 +78,4 @@ FDF is compatible with:
 ---
 
 ### Demonstration of Controls
-![Demonstration of Controls](pictures/controls.gif)
+<img src="pictures/controls.gif" alt="Demonstration of Controls" style="width:100%;">
