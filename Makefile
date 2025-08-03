@@ -6,30 +6,33 @@ SRC = ./src
 
 SRCS = ./src/fdf.c \
 		./src/draw.c \
+		./src/colours.c \
+		./src/fdf_init.c \
 		./src/fdf_parse.c \
-		./src/fdf_error.c \
 		./src/fdf_utils.c \
 		./src/ft_printf.c \
+		./src/fdf_events.c \
 		./src/fdf_control.c \
 		./src/fdf_functions.c \
-		./src/ft_printf_lib.c
+		./src/ft_printf_lib.c \
+		./src/fdf_validation.c
 
 OBJS = $(patsubst $(SRC)/%.c, $(BUILD)/%.o, $(SRCS))
 
-INCS = -I
-
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = ./includes/fdf.h
+HEADER = includes/fdf.h includes/ft_printf.h
 
-MINILIBX = minilibx_macos
+MINILIBX = lib/minilibx_macos
 
 FMS = -framework OpenGL -framework AppKit -L $(MINILIBX) -lmlx
 
 ifeq ($(shell uname -s), Linux)
-	MINILIBX = minilibx-linux
-	FMS= -L $(MINILIBX) -lmlx -lm -lX11 -lXext
+	MINILIBX = lib/minilibx-linux
+	FMS = -L $(MINILIBX) -lmlx -lm -lX11 -lXext
 endif
+
+INCS = -Iincludes -I$(MINILIBX)
 
 RESET			= \033[0m
 PURPLE			= \033[0;35m
@@ -37,12 +40,12 @@ LIGHT_PURPLE	= \033[1;35m
 
 $(BUILD)/%.o:	$(SRC)/%.c $(HEADER) Makefile
 	@printf "${PURPLE}✧ ${RESET}";
-	@$(CC) $(CFLAGS) $(INCS)$(MINILIBX) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 all:	$(BUILD) mlx ${NAME}
 
 ${NAME}: ${OBJS}
-	@$(CC) $(CFLAGS) $(OBJS) $(FMS) -o ${NAME}
+	@$(CC) $(CFLAGS) $(OBJS) $(INCS) $(FMS) -o ${NAME}
 	@echo
 	@echo "${LIGHT_PURPLE}FDF created 👾${RESET}"
 	@echo "$(PURPLE)------------------------------------------------------------------$(RESET)"
