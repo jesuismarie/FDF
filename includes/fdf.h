@@ -6,7 +6,7 @@
 /*   By: mnazarya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:56:50 by mnazarya          #+#    #+#             */
-/*   Updated: 2023/08/16 19:45:35 by mnazarya         ###   ########.fr       */
+/*   Updated: 2025/08/03 17:00:20 by mnazarya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include "../includes/ft_printf.h"
-# include "../minilibx_macos/mlx.h"
+# include "ft_printf.h"
+# include "mlx.h"
 
 typedef struct s_image
 {
@@ -70,18 +70,23 @@ typedef struct s_image
 
 typedef struct s_fdf
 {
-	int		**z_matrix;
-	int		**mat;
+	float	**z_matrix;
+	float	**mat;
+	int		**color_matrix;
 	void	*mlx;
 	void	*win;
 	int		height;
 	int		width;
 	float	zoom;
 	int		color;
-	int		cx;
+	float	cx;
 	float	cy;
-	int		cz;
+	float	cz;
 	float	angle;
+	float	z_angle;
+	float	z_scale;
+	int		max_z;
+	int		min_z;
 	int		flag;
 	t_image	img;
 }	t_fdf;
@@ -109,7 +114,8 @@ char	**splited_map(char *file);
 int		map_error(char **str);
 void	get_wh(t_fdf *map, char **str);
 void	scale(t_fdf *map);
-int		ft_atoi(const char *nptr);
+int		ft_atoi_with_color(const char *nptr, int *color);
+int		ft_hex_to_int(const char *hex);
 void	fill_matrix(char **str, t_fdf *map);
 void	set_default(t_fdf *map, char *file, char **str);
 void	img_init(t_fdf *map);
@@ -122,5 +128,7 @@ void	view(int key, t_fdf *map);
 void	rotate(int key, t_fdf *map);
 void	z_move(int key, t_fdf *map);
 void	colours(t_fdf *map, t_line c);
+int		keys(int keycode, t_fdf *map);
+int		close_win(t_fdf *map);
 
 #endif

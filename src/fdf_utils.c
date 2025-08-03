@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include <fdf.h>
 
 int	free_malloc(char **str)
 {
@@ -85,15 +85,4 @@ char	**ft_split(char const *s, char c)
 	if (!splited_str && free_malloc(splited_str))
 		return (0);
 	return (splited_str);
-}
-
-void	set_default(t_fdf *map, char *file, char **str)
-{
-	get_wh(map, str);
-	map->angle = 0.8;
-	scale(map);
-	fill_matrix(str, map);
-	map->mlx = mlx_init();
-	map->win = mlx_new_window(map->mlx, WIN_X, WIN_Y, file);
-	img_init(map);
 }

@@ -6,11 +6,11 @@
 /*   By: mnazarya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:56:39 by mnazarya          #+#    #+#             */
-/*   Updated: 2023/03/21 17:58:25 by mnazarya         ###   ########.fr       */
+/*   Updated: 2025/08/03 14:11:41 by mnazarya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include <fdf.h>
 
 void	zoom(int key, t_fdf *map)
 {
@@ -23,13 +23,13 @@ void	zoom(int key, t_fdf *map)
 void	translate(int key, t_fdf *map)
 {
 	if (key == UP)
-		map->cy -= 5;
+		map->cy -= 2;
 	if (key == DOWN)
-		map->cy += 5;
+		map->cy += 2;
 	if (key == LEFT)
-		map->cx -= 5;
+		map->cx -= 2;
 	if (key == RIGHT)
-		map->cx += 5;
+		map->cx += 2;
 }
 
 void	view(int key, t_fdf *map)
@@ -65,9 +65,9 @@ void	z_move(int key, t_fdf *map)
 	j = 0;
 	map->cz = 0;
 	if (key == Z_UP)
-		map->cz += 2;
+		map->cz += 0.2;
 	if (key == Z_DOWN)
-		map->cz -= 2;
+		map->cz -= 0.2;
 	while (i < map->height)
 	{
 		j = 0;

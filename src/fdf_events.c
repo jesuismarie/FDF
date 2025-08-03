@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnazarya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 16:22:24 by mnazarya          #+#    #+#             */
-/*   Updated: 2025/08/02 15:09:14 by mnazarya         ###   ########.fr       */
+/*   Created: 2025/08/01 17:00:24 by mnazarya          #+#    #+#             */
+/*   Updated: 2025/08/02 19:58:21 by mnazarya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int	main(int ac, char **av)
+int	keys(int keycode, t_fdf *map)
 {
-	t_fdf	map;
-	char	**str;
-
-	map.img.img = NULL;
-	map.flag = 0;
-	if (!display_error(ac, av[1]))
-		return (0);
-	str = splited_map(av[1]);
-	if (!(*str) || !str)
+	if (keycode == ESC)
 	{
-		ft_printf ("Invalid map\n");
-		exit (0);
+		mlx_destroy_image(map->mlx, map->img.img);
+		mlx_destroy_window(map->mlx, map->win);
+		exit(0);
 	}
-	if (map_error(str))
-	{
-		set_default(&map, av[1], str);
-		mlx_hook(map.win, 2, 1l, &keys, &map);
-		mlx_hook(map.win, 17, 1l << 15, &close_win, &map);
-		mlx_loop(map.mlx);
-	}
+	zoom(keycode, map);
+	translate(keycode, map);
+	view(keycode, map);
+	rotate(keycode, map);
+	z_move(keycode, map);
+	img_init(map);
 	return (0);
+}
+
+int	close_win(t_fdf *map)
+{
+	mlx_clear_window(map->mlx, map->win);
+	mlx_destroy_window(map->mlx, map->win);
+	exit(0);
 }

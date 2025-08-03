@@ -6,26 +6,11 @@
 /*   By: mnazarya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:41:15 by mnazarya          #+#    #+#             */
-/*   Updated: 2023/03/20 18:17:16 by mnazarya         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:04:47 by mnazarya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-
-void	scale(t_fdf *map)
-{
-	float	height;
-	float	width;
-
-	height = map->width * sin(map->angle) + map->height * cos(map->angle);
-	width = map->width * cos(map->angle) + map->height * sin(map->angle);
-	if (height < width)
-		map->zoom = (WIN_Y - 400) / height;
-	else
-		map->zoom = (WIN_X - 400) / width;
-	map->cx = WIN_X / 3 + 50;
-	map->cy = (WIN_Y / 3) - 110;
-}
+#include <fdf.h>
 
 void	my_mlx_pixel_put(t_fdf *map, int x, int y)
 {
@@ -57,9 +42,11 @@ static void	draw_helper(t_fdf *map, t_line *c)
 	if (!map->flag)
 	{
 		c->x1 = (c->x1 - c->y1) * cos(map->angle);
-		c->y1 = ((c->x1 + c->y1) * sin(map->angle)) - map->z_matrix[j1][i1];
+		c->y1 = ((c->x1 + c->y1) * sin(map->angle))
+			- (map->z_matrix[j1][i1] * map->z_scale * map->zoom);
 		c->x2 = (c->x2 - c->y2) * cos(map->angle);
-		c->y2 = ((c->x2 + c->y2) * sin(map->angle)) - map->z_matrix[j2][i2];
+		c->y2 = ((c->x2 + c->y2) * sin(map->angle))
+			- (map->z_matrix[j2][i2] * map->z_scale * map->zoom);
 	}
 }
 

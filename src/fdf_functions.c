@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include <fdf.h>
 
 char	*ft_strrchr(const char *s, int c)
 {
@@ -87,15 +87,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi_with_color(const char *nptr, int *color)
 {
-	int	i;
-	int	j;
-	int	nb;
+	int		i;
+	int		j;
+	int		nb;
+	char	*comma_pos;
 
 	i = 0;
 	nb = 0;
 	j = 1;
+	*color = -1;
 	while (nptr[i] == '\n' || nptr[i] == ' ' || nptr[i] == '\t'
 		|| nptr[i] == '\f' || nptr[i] == '\v' || nptr[i] == '\r')
 		i++;
@@ -107,5 +109,8 @@ int	ft_atoi(const char *nptr)
 	}
 	while (nptr[i] >= 48 && nptr[i] <= 57)
 		nb = (nb * 10) + (nptr[i++] - 48);
+	comma_pos = ft_strrchr(nptr, ',');
+	if (comma_pos && comma_pos[1])
+		*color = ft_hex_to_int(comma_pos + 1);
 	return (nb * j);
 }

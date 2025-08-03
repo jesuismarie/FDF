@@ -6,11 +6,11 @@
 /*   By: mnazarya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:14:42 by mnazarya          #+#    #+#             */
-/*   Updated: 2023/03/22 20:42:13 by mnazarya         ###   ########.fr       */
+/*   Updated: 2025/08/03 14:10:52 by mnazarya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include <fdf.h>
 
 char	*read_str(char *file)
 {
@@ -43,25 +43,19 @@ char	**splited_map(char *file)
 	return (spl_nl);
 }
 
-void	get_wh(t_fdf *map, char **str)
-{
-	map->height = 0;
-	while (str[map->height])
-		map->height++;
-	map->width = word_count(str[0], ' ');
-}
-
 static void	create_matrix(t_fdf *map, int x, int y)
 {
 	int	i;
 
 	i = 0;
-	map->z_matrix = (int **)malloc(sizeof(int *) * y);
-	map->mat = (int **)malloc(sizeof(int *) * y);
+	map->z_matrix = (float **)malloc(sizeof(float *) * y);
+	map->mat = (float **)malloc(sizeof(float *) * y);
+	map->color_matrix = (int **)malloc(sizeof(int *) * y);
 	while (i < y)
 	{
-		map->z_matrix[i] = (int *)malloc(sizeof(int) * x);
-		map->mat[i] = (int *)malloc(sizeof(int) * x);
+		map->z_matrix[i] = (float *)malloc(sizeof(float) * x);
+		map->mat[i] = (float *)malloc(sizeof(float) * x);
+		map->color_matrix[i] = (int *)malloc(sizeof(int) * x);
 		i++;
 	}
 }
@@ -71,6 +65,7 @@ void	fill_matrix(char **str, t_fdf *map)
 	int		i;
 	int		j;
 	char	**s;
+	int		color;
 
 	i = 0;
 	j = 0;
@@ -81,8 +76,9 @@ void	fill_matrix(char **str, t_fdf *map)
 		j = 0;
 		while (j < map->width)
 		{
-			map->z_matrix[i][j] = ft_atoi(s[j]);
-			map->mat[i][j] = ft_atoi(s[j]);
+			map->z_matrix[i][j] = ft_atoi_with_color(s[j], &color);
+			map->mat[i][j] = map->z_matrix[i][j];
+			map->color_matrix[i][j] = color;
 			j++;
 		}
 		free_malloc(s);
