@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include <ft_printf.h>
 
 int	ft_putchar(char c)
 {
@@ -95,7 +95,7 @@ int	ft_hex(unsigned long long n, short x)
 		{
 			count += ft_hex(n / 16, x);
 			count += ft_putchar("0123456789ABCDEF"[n % 16]);
-		}	
+		}
 	}
 	return (count);
 }
